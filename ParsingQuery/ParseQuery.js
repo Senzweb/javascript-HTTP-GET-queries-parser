@@ -20,7 +20,7 @@ function QueryParser({ query_url: url, output: _returns }) {
             }
         }
 
-        if (_returns == "params") {
+        if (_returns == "param") {
             result_params.push(tmp_param);
 
             //Checking whether there is in the address #
