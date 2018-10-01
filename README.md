@@ -4,12 +4,66 @@
 
 
 
-```
+```js
+
 var queries = QueryParser({
-     query_url: "https://example.com/index.html?param=query", //Адрес целевой страницы или текущей страницы (window.location.href)
-     output: "query" //параметр определяет возвращаемое значение query: вернет значение параметра, params: имя параметра 
+     query_url: "https://example.com/index.html?order=abc", 
+     output: "query"
 });
 
+```
+
+### Параметры 
+
+- query_url: Адрес целевой страницы или текущей страницы (window.location.href);
+- output: параметр определяет возвращаемое значение.
 
 ### Возвращаемые значения
 
+Функция возвращает массив из строк, в зависимости от параметра ```output:``` в параметрах функции ```QueryParser();```
+
+**Возможные значения:**
+- query: При этом функция возвращает значение параметра;
+- param: имя параметра
+
+### Пример
+
+
+```js
+
+// 
+//Один параметр
+//
+
+var queries = QueryParser({
+     query_url: "https://example.com/index.html?order=abc",
+     output: "query" 
+});
+
+//returns: ["abc"];
+
+var queries = QueryParser({
+     query_url: "https://example.com/index.html?order=abc",
+     output: "param"  
+});
+
+//returns: ["order"];
+
+// 
+//Несколько параметров
+//
+var queries = QueryParser({
+     query_url: "https://example.com/index.html?order=abc&per_page=100",
+     output: "query"
+});
+
+//returns: ["abc","100"];
+
+var queries = QueryParser({
+     query_url: "https://example.com/index.html?order=abc&per_page=100",
+     output: "param" //параметр определяет возвращаемое значение. 
+});
+
+//returns: ["order", "per_page"];
+
+```
