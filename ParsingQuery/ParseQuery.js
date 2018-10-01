@@ -34,6 +34,6 @@ function QueryParser({ query_url: url, output: _returns }) {
 
     if (_returns == "query")
         return result;
-    else if (_returns == "params")
+    else if (_returns == "param")
         return result_params;
 }
