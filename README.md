@@ -7,11 +7,16 @@
 ```js
 
 var queries = QueryParser({
-     query_url: "https://example.com/index.html?order=abc", //Адрес целевой страницы или текущей страницы (window.location.href)
-     output: "query" //параметр определяет возвращаемое значение. 
+     query_url: "https://example.com/index.html?order=abc", 
+     output: "query"
 });
 
 ```
+
+### Параметры 
+
+- query_url: Адрес целевой страницы или текущей страницы (window.location.href);
+- output: параметр определяет возвращаемое значение.
 
 ### Возвращаемые значения
 
@@ -31,34 +36,34 @@ var queries = QueryParser({
 //
 
 var queries = QueryParser({
-     query_url: "https://example.com/index.html?order=abc", //Адрес целевой страницы или текущей страницы (window.location.href)
-     output: "query" //параметр определяет возвращаемое значение. 
+     query_url: "https://example.com/index.html?order=abc",
+     output: "query" 
 });
 
-//queries = ["abc"]
+//returns: ["abc"];
 
 var queries = QueryParser({
-     query_url: "https://example.com/index.html?order=abc", //Адрес целевой страницы или текущей страницы (window.location.href)
-     output: "param" //параметр определяет возвращаемое значение. 
+     query_url: "https://example.com/index.html?order=abc",
+     output: "param"  
 });
 
-//queries = ["order"]
+//returns: ["order"];
 
 // 
 //Несколько параметров
 //
 var queries = QueryParser({
-     query_url: "https://example.com/index.html?order=abc&per_page=100", //Адрес целевой страницы или текущей страницы (window.location.href)
-     output: "query" //параметр определяет возвращаемое значение. 
+     query_url: "https://example.com/index.html?order=abc&per_page=100",
+     output: "query"
 });
 
-//queries = ["abc","100"]
+//returns: ["abc","100"];
 
 var queries = QueryParser({
-     query_url: "https://example.com/index.html?order=abc&per_page=100", //Адрес целевой страницы или текущей страницы (window.location.href)
+     query_url: "https://example.com/index.html?order=abc&per_page=100",
      output: "param" //параметр определяет возвращаемое значение. 
 });
 
-//queries = ["order", "per_page"]
+//returns: ["order", "per_page"];
 
 ```
