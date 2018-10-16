@@ -1,5 +1,5 @@
 function QueryParser({ query_url: url, output: _returns }) {
-    let query = url.split("?")[1], //result - query string without page address "id=someName&userMail=some@mail.com&usText=MemoText"
+    let query = decodeURIComponent(url.split("?")[1]), //result - query string without page address "id=someName&userMail=some@mail.com&usText=MemoText"
         params = query.split("&"), //the result is an array of strings from the pairs "id = someName", "userMail=some@mail.com", "usText=MemoText"
 
         
