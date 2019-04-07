@@ -66,4 +66,11 @@ var queries = QueryParser({
 
 //returns: ["order", "per_page"];
 
+var queries = QueryParser({
+     query_url: "https://example.com/index.html?order=abc&per_page=100",
+     output: "pair" //параметр определяет возвращаемое значение. 
+});
+
+//returns: [{order: 'abc'},{per_page: 100}];
+
 ```
