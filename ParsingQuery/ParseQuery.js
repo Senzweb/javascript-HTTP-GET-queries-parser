@@ -1,44 +1,48 @@
 function QueryParser({ query_url: url, output: _returns }) {
     let query = decodeURIComponent(url.split("?")[1]), //result - query string without page address "id=someName&userMail=some@mail.com&usText=MemoText"
         params = query.split("&"), //the result is an array of strings from the pairs "id = someName", "userMail=some@mail.com", "usText=MemoText"
-
-
         result = [],
         result_params = [];
     result_pair = [];
+    result_obj = {};
 
-    params.forEach(function (value) {
-        let tmp = value.split("=")[1],
-            tmp_param = value.split("=")[0];
+    params.forEach(function (value, i) {
+        let tmp = (value.split("=")[1]),
+            tmp_param = (value.split("=")[0]);
 
-        if (_returns == "query") {
+        if (_returns == "query" && tmp != undefined) {
             result.push(tmp);
 
             //Checking whether there is in the address #
-            if (tmp.includes("#")) {
+            if (tmp.indexOf("#") !== -1) {
                 result.pop(result.length - 1);
                 result.push(tmp.replace('#', ""));
             }
         }
 
-        if (_returns == "param") {
+        if (_returns == "param" && tmp != undefined) {
             result_params.push(tmp_param);
+        }
 
+        if (_returns == "pair" && tmp != undefined) {
             //Checking whether there is in the address #
-            if (tmp_param.includes("#")) {
+            if (tmp.indexOf("#") !== -1) {
                 result_params.pop(result_params.length - 1);
-                result_params.push(tmp_param.replace('#', ""));
+                let ltmp = tmp.replace('#', '');
+                result_pair.push({ [tmp_param]: ltmp });
+            } else {
+                result_pair.push({ [tmp_param]: tmp });
             }
         }
 
-        if (_returns == "pair") {
-            result_pair.push({ [tmp_param]: tmp });
-
+        if (_returns == "object" && tmp != undefined) {
             //Checking whether there is in the address #
-            if (tmp_param.includes("#")) {
+            if (tmp.indexOf("#") !== -1) {
                 result_params.pop(result_params.length - 1);
-                let ltmp = tmp_param.replace('#', '');
-                result_pair.push({ [ltmp]: tmp });
+                let ltmp = tmp.replace('#', '');
+                result_obj[[tmp_param]] = ltmp;
+            } else {
+                result_obj[[tmp_param]] = tmp;
             }
         }
 
@@ -50,4 +54,6 @@ function QueryParser({ query_url: url, output: _returns }) {
         return result_params;
     else if (_returns == "pair")
         return result_pair;
+    else if (_returns == "object")
+        return result_obj;
 }
