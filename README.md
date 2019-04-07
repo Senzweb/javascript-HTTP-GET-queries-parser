@@ -26,6 +26,7 @@ var queries = QueryParser({
 - query: При этом функция возвращает значение параметра;
 - param: Имя параметра
 - pair: Массив объектов (ex: ``` [{id: 'test'}, {per_page: 100}]```)
+- object: Объект (ex: ``` {id: 'test', per_page: 100}```)
 
 ### Пример
 
@@ -57,6 +58,13 @@ var queries = QueryParser({
 
 //returns: [{order: "abc"}];
 
+var queries = QueryParser({
+     query_url: "https://example.com/index.html?order=abc",
+     output: "object"  
+});
+
+//returns: {order: "abc"};
+
 // 
 //Несколько параметров
 //
@@ -80,5 +88,12 @@ var queries = QueryParser({
 });
 
 //returns: [{order: 'abc'},{per_page: 100}];
+
+var queries = QueryParser({
+     query_url: "https://example.com/index.html?order=abc&per_page=100",
+     output: "object" //параметр определяет возвращаемое значение. 
+});
+
+//returns: {order: 'abc', per_page: 100};
 
 ```
