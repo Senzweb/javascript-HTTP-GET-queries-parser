@@ -50,6 +50,13 @@ var queries = QueryParser({
 
 //returns: ["order"];
 
+var queries = QueryParser({
+     query_url: "https://example.com/index.html?order=abc",
+     output: "pair"  
+});
+
+//returns: [{order: "abc"}];
+
 // 
 //Несколько параметров
 //
