@@ -16,7 +16,7 @@ var queries = QueryParser({
 ### Параметры 
 
 - query_url: Адрес целевой страницы или текущей страницы (window.location.href);
-- output: параметр определяет возвращаемое значение.
+- output: параметр определяет возвращаемое значение:
 
 ### Возвращаемые значения
 
@@ -24,7 +24,8 @@ var queries = QueryParser({
 
 **Возможные значения:**
 - query: При этом функция возвращает значение параметра;
-- param: имя параметра
+- param: Имя параметра
+- pair: Массив объектов (ex: ``` [{id: 'test'}, {per_page: 100}]```)
 
 ### Пример
 
@@ -49,6 +50,13 @@ var queries = QueryParser({
 
 //returns: ["order"];
 
+var queries = QueryParser({
+     query_url: "https://example.com/index.html?order=abc",
+     output: "pair"  
+});
+
+//returns: [{order: "abc"}];
+
 // 
 //Несколько параметров
 //
@@ -65,5 +73,12 @@ var queries = QueryParser({
 });
 
 //returns: ["order", "per_page"];
+
+var queries = QueryParser({
+     query_url: "https://example.com/index.html?order=abc&per_page=100",
+     output: "pair" //параметр определяет возвращаемое значение. 
+});
+
+//returns: [{order: 'abc'},{per_page: 100}];
 
 ```
