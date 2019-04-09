@@ -16,7 +16,7 @@ function QueryParser({ query_url: url, output: _returns }) {
             //Checking whether there is in the address #
             if (tmp.indexOf("#") !== -1) {
                 result.pop(result.length - 1);
-                result.push(tmp.replace('#', ""));
+                result.push(tmp.split('#')[0]);
             }
         }
 
@@ -28,7 +28,7 @@ function QueryParser({ query_url: url, output: _returns }) {
             //Checking whether there is in the address #
             if (tmp.indexOf("#") !== -1) {
                 result_params.pop(result_params.length - 1);
-                let ltmp = tmp.replace('#', '');
+                let ltmp = tmp.split('#')[0];
                 result_pair.push({ [tmp_param]: ltmp });
             } else {
                 result_pair.push({ [tmp_param]: tmp });
@@ -39,7 +39,7 @@ function QueryParser({ query_url: url, output: _returns }) {
             //Checking whether there is in the address #
             if (tmp.indexOf("#") !== -1) {
                 result_params.pop(result_params.length - 1);
-                let ltmp = tmp.replace('#', '');
+                let ltmp = tmp.split('#')[0];
                 result_obj[[tmp_param]] = ltmp;
             } else {
                 result_obj[[tmp_param]] = tmp;
